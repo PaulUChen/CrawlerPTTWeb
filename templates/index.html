@@ -1,0 +1,98 @@
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Bootstrap -->
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<title>PTT Crawler</title>
+	<script type="text/javascript">
+
+$(document).ready(function(){
+	$("#btn1").click(function(){       // 给btn1點擊效果
+		$.ajax({                    // ajax
+		url:"{% url "getPastPTT" %}",  // request address
+		success:function(result){$("#getpast").html(result);}// success result.
+		});
+	});
+});
+
+$(document).ready(function(){
+	$("#btn2").click(function(){
+		$.ajax({
+		url:"{% url "getPTT" %}",
+		success:function(result){$("#getnow").html(result);}
+		});
+	});
+});
+
+ </script>
+</head>
+<body style="background-color:#F5F5DC">
+	<header>
+		<div class="row" style="background-color:#FFBB73" >
+			<div class="col-md-6" style="background-color:#FFBB73">
+				<h1>PTT MOVIE抓取</h1>
+			</div>
+			<div class="col-md-3" style="background-color:#FFBB73;">
+				<div id="getpast"><h2><button id="btn1">抓之前兩頁的資料</button></h2></div>
+			</div>
+			<div class="col-md-3" style="background-color:#FFBB73">
+				<div id="getnow"><h2><button id="btn2">首次抓取PTT資料</button></h2></div>
+			</div>
+		{% csrf_token %}
+		</div>
+
+	</header>
+	<main >
+		<div class="row justify-content-center">
+			<div class="col-md-3"></div>
+			<div class="col-md-8 justify-content-center">
+				<div style="background-color:#F5F5DC" >
+					<table border="1" cellpadding="5" cellspacing="0">
+					<th>ID</th>
+					<th>文章</th>
+					<th>From</th>
+					<th>推文數</th>
+					<th>日期</th>
+					<th>內文Link</th>
+					{% for Post in Posts%}
+					<tr>
+						<td>{{Post.id}}</td>
+						<td>{{Post.title}}  </td>
+						<td>{{Post.author}}  </td>
+						<td>{{Post.push}}  </td>
+						<td>{{Post.date}}  </td>
+						<td>
+							<a href="/detail/{{Post.id}}/" ><span class="glyphicon glyphicon-link"></span> Link</a>
+						</td>
+					</tr>
+					{% endfor %}
+					</table>
+				</div>
+			</div>
+			<div class="col-md-1"></div>
+		</div>
+		<div class="row justify-content-center">
+		  {% if currentpage > 1 %}
+			  <button onclick="location.href='/index/prev/'" style="background-color:#FFBB73"><h4><span class="glyphicon glyphicon-circle-arrow-left"></span>上一頁</h4></button>
+		  {% endif %}
+		  {% if currentpage < totpage %}
+			  <button onclick="location.href='/index/next/'" style="background-color:#FFBB73"><h4><span class="glyphicon glyphicon-circle-arrow-right"></span>下一頁</h4></button>
+		  {% endif %}
+		</div>
+	</main>
+  	<footer class="page-footer font-small pt-4 cyan darken-3">
+
+	</footer>
+</body>
+</html>

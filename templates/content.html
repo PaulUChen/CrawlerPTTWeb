@@ -1,0 +1,48 @@
+<html>
+<head>
+	<meta charset="utf-8">
+  	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+  	<meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <!-- Bootstrap -->
+  <link href="//fonts.googleapis.com/css?family=Lobster&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+	<title>PTT Crawler</title>
+</head>
+<body style="background-color:#F5F5DC">
+	<header>
+		<div class="row" style="background-color:#FFBB73" >
+			<div class="col-md-10" style="background-color:#FFBB73">
+				<h1>{{Post.title}}</h1>
+			</div>
+		{% csrf_token %}
+		</div>
+	</header>
+	<main >
+		<div class="row justify-content-center">
+			<div class="col-md-2"></div>
+			<div class="col-md-8 justify-content-center">
+				<div style="background-color:#F5F5DC" >
+                    <h2>作者  {{Post.author}}</h2>
+                    <h3>發布時間 {{Post.times}}</h3>
+                    <h4>{{Post.content}}</h4>
+				</div>
+			</div>
+			<div class="col-md-2"></div>
+		</div>
+        <div class="row justify-content-center" >
+            <button onclick="location.href='/index/'" style="background-color:#FFBB73"><h4><span class="glyphicon glyphicon-circle-arrow-left"></span>上一頁</h4></button>
+        </div>
+	</main>
+  	<footer class="page-footer font-small pt-4 cyan darken-3">
+
+	</footer>
+</body>
+</html>
