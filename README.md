@@ -7,3 +7,6 @@
 抓取的內容包含文章的 title 、推文數、發文時間、作者等，
 
 而內文的部分則用link按鈕另做連結，可點選查看。
+
+＊＊ Crawler 的部分是參考 leVirve 發佈在Github的爬蟲極簡教學，寫得十分清楚，讓我受益良多。＊＊
+連結 ： https://github.com/leVirve/CrawlerTutorial  
